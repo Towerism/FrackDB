@@ -1,6 +1,5 @@
 # Compiled Object files
-*.slo
-*.lo
+*.slo *.lo
 *.o
 *.obj
 
@@ -34,3 +33,4 @@
 /bii/deps/*
 /bii/.hive.db
 /bii/layout.bii
+/bii/settings.bii
