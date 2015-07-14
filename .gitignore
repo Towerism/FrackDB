@@ -28,9 +28,4 @@
 
 # Repo specific
 /bin/*
-/bii/build/*
-/bii/cmake/*
-/bii/deps/*
-/bii/.hive.db
-/bii/layout.bii
-/bii/settings.bii
+/bii/*
