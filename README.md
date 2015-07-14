@@ -18,3 +18,7 @@ $ bii init -L
 $ bii buzz
 ```
 
+# Test
+```
+$ bii test
+```
