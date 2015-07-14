@@ -32,4 +32,5 @@
 /bii/build/*
 /bii/cmake/*
 /bii/deps/*
-
+/bii/.hive.db
+/bii/layout.bii
