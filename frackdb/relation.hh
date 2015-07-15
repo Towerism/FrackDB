@@ -1,7 +1,10 @@
+#pragma once
+
 #include <exception>
 #include <map>
 #include <string>
 #include <vector>
+#include "attribute_list.hh"
 
 class Relation {
 public:
@@ -16,22 +19,10 @@ public:
   const std::vector<std::string>& get_attribute_names() const;
   const std::vector<std::string>& get_primary_key() const;
 
-  struct Primary_key_exception : public std::exception {
-    virtual const char* what() const noexcept {
-      return "Primary_key_exception";
-    }
-  };
-
 private:
 
   std::string name;
-  std::vector<std::string> attribute_names;
-  std::vector<std::string> primary_key;
-  std::map<std::string, std::vector<std::string>> rows;
-  std::vector<std::string>::iterator primary_key_starting_iterator;
+  Attribute_list attribute_list;
 
-  void safe_set_primary_key(std::vector<std::string> primary_key);
-  void check_primary_key(std::vector<std::string>& primary_key);
-  std::vector<std::string> calculate_key(const std::vector<std::string>& row) const;
-  std::string concatenate_key(const std::vector<std::string>& key) const;
+  std::map<std::string, std::vector<std::string>> rows;
 };
