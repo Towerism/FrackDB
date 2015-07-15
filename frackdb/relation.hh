@@ -32,4 +32,6 @@ private:
 
   void safe_set_primary_key(std::vector<std::string> primary_key);
   void check_primary_key(std::vector<std::string>& primary_key);
+  std::vector<std::string> calculate_key(const std::vector<std::string>& row) const;
+  std::string concatenate_key(const std::vector<std::string>& key) const;
 };
