@@ -4,7 +4,7 @@ Another database management system
 # Requirements
 * Biicode 3.3+
 * C++14 Compiler
-* CMake
+* CMake 3.1.3+
 
 # Clone
 ```
