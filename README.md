@@ -5,6 +5,7 @@ Another database management system
 * Biicode 3.3+
 * C++14 Compiler
 * CMake 3.1.3+
+* GNU Make 4.1+
 
 # Clone
 ```
@@ -14,11 +15,10 @@ $ cd FrackDB
 
 # Build
 ```
-$ bii init -L
-$ bii buzz
+$ make build
 ```
 
 # Test
 ```
-$ bii test
+$ make test
 ```
