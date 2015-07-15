@@ -1,20 +1,25 @@
 language: c++
+
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-5
+      - g++-5
+
 install:
-- export CXX=g++-5
-- sudo ci/install_biicode.sh
-- bii setup:cpp
+  - export CXX=g++-5
+  - sudo ci/install_biicode.sh
+  - bii setup:cpp
+
 script: make
-deploy:
-  provider: biicode
-  user: Towerism
-  password:
-    secure: F1+oRQdLQVa7ee1JeJfIz1JagGrsuKt4HjitvComokYFx5vfYJcHIikUOCDjNCAWpJ8s7sfx5b3JI675khPETAW8dFy0cBpCZkUjyBUoJF6zxrIYvBYhWVKugv3lpbYIJ82SRsZSP7uw18WJjOuEbUCaavg6Kb/RgM/dY2JN5XLeUXg8A481PGinaPCAdYZBZhIf9pfNrR1B9m04SnJGUmI1f/uPvUzG6J9e1McbTp/Ml9Ggenp2gHxlA08A6LeeB6ItI906iEVQ7WNvDghUtEK0N8QbKqM/ctBKItQF2gTsCPKCY1Q++6hVtkKW08sElQPECbIi9hsXH7SHTSquEQ8OFqH5i1PODMTskrTL8ncyBMY5i4iqegPKBkhqo9LboDUJA2Jw9eRVXygeHOXsRY+XyWA9wM4uFULsu3ocOoskJ5RD01R6pxPGRsMPKCJactcQ4M1+H5UfVzRirFbUf1kAbIlw2fNwB0kQqptBmFeHsEl+6tzyDntZU8cxKr4bxvO776OBskCw7WqkSalSShEalVDVzI4a41UFzLDQv5VMpUu9dgr3p3taXqKPEHoQfOuvgcC6DuVasPDDiXv2sSN6LWSnWS/8YQZuaWnHas/85buQTgQCtQ+WRJK48o7f6s8TSDDmh9ZZMB6z1b6iLLDGPTD3KT5hesbTSxE+LLQ=
-  on:
-    repo: Towerism/FrackDB
-    branch: develop
+
+after_script:
+  - bii user "$BII_USER" -p "$BII_PASSWORD"
+  - bii publish
+
+env:
+  global:
+    - BII_USER=Towerism
+    # BII_PASSWORD > travis encrypt BII_PASSWORD=xxxxx --add
+    - secure: YYu3sqLvFyHZRShRYtDNNCB+jdohFRD2p+/GY3HfWwJkenEXYE5oTngWVY3lH0SfazVwKpqa6UogURHa5mmABFDlNUPNVJ53XcMXTbD1x30VP1PMbSGWbLw3u6Xz+Wi8Mg4HS+d7hegz1pph18/k1ZFEzsMOKxyG5gU7v/BkLK2ez15Y37WZ4x/OJTQpXRjjddeWYTZbidC72BLlRMEyc/AzT4OldugeB1FzQYpFgVpMo/iQMyw8BO7AU37Nzxig6XuZ3vuuFYXfuyWISAxmwKxX+3Wuka6Orah4VU3WEnFCI9pooMEpkfzeEBwRcPCgXrgCVTD1UlaDgAUcMkPH93TAmqtd0I3mxxp00/KCDX/lL7a0p8a0szha/U4QeZVjBXz5RDvr801EGQCh/I1r7AuijssXo9iRXlxPJUPcgQkrC1Ny+BZJ5AEOt8IMXUHCCnGb6G1JXQJ2jScexG8LKoRj5VC8v7oIKKtFO/AP52eu6AgOn6Y1pJO0Wd1XzwaBvj669HJlzoUw9VQzkUEbTqAQ0cEvrr28RliRihXqoT0xDN0qC6b7mm97XB8OvXyhRemLkUaojymiQyZLLW1rPKRkpwSrFs4DAUnp015QnkRJKzp4Kq4nIzVvPrkFcs3AmqmSgu/FbLGUok6SeotIvqPRViNdtm0T77Ta21q0oro=
