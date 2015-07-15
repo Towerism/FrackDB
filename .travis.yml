@@ -14,7 +14,7 @@ install:
 
 script: make
 
-after_script:
+after_success:
   - bii user "$BII_USER" -p "$BII_PASSWORD"
   - bii publish
 
