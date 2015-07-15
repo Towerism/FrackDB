@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
-#include <attribute_list.hh>
-#include <relation.hh>
+#include <relation/relation.hh>
 
 using std::vector;
 using std::string;
