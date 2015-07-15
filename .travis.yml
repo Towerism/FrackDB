@@ -1,0 +1,26 @@
+language: c++
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
+
+install:
+  - export CXX=g++-5
+  - sudo ci/install_biicode.sh
+  - bii setup:cpp
+
+script: make
+
+deploy:
+  provider: biicode
+  user: Towerism
+  password:
+    secure: gHJekdZA3W4C/sY4TnJUGEyn249LGWztyIxVl/tti43ZXqeh9WU4fH1zGl1AP6gZTNvQCxKJJXIwhTUcGlRtfhGnDtqlR98oX7cm3ovSs6tmvd8oDF32faMANAffPXJ6cRX8TMwiWX7Y55BxKbjJcqnZXIMm06/kU2CMtHiz4gXy+BRt/GPKYzhKVu+BijCRqC6TAyUhECEzhU+742LqM/T1SETK8t5xPs/daObF5Rdw0ugU4svjb9voB+uG4WXrsQcwL0laAp3hbjR50NXeIAzWGjWEikwldy5Dv3h/EdRvAXJUWmc8OzIR2OyX9szXeSCKEL+b/0zle+CxaikC6MbDtJ1AQ1g+Qgb+8hdh9nYH2fwyE1iRHCBVx0+hePRQqu9E5ggNhj/QPmPbMZE//Y8wRULvM9wMp63hrBIRctMdWaTE3EcXUSvRVUTdHQuoiEELoGr4BI81hSkT6G0eIpJXualJZ1Pd0MAjBQ8PWr/oNpGkLGByip0aYNhlgEBzy0qD4ay3/rewUqUGYhOR3AUNkVxS/r3I78We3NqhrFzWSu4Mjgbo3CICBjsWk/tyll/tS9p1VBMSr9C48AEEYCnF+msZfUp2jk1YhLXo2LPqo4kiN62ojcrf/TgZOEyrf8alyNMdTM79xwQJ41UK+uMbY9t4lEQYHppN8N8/ISE=
+  on:
+    tags: true
+    repo: Towerism/FrackDB
+    all_branches: true
+
