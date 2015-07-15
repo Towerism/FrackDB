@@ -4,13 +4,10 @@ default: all
 
 all: test
 
-check_bii:
-	`which bii 2>/dev/null` || (echo "Biicode must be installed" && exit 1)
+bii:
+	bii init -L && touch .bii_init
 
-.bii_init: check_bii
-	bii setup:cpp && bii init -L && touch .bii_init
-
-configure: .bii_init
+configure: bii
 	bii cpp:configure
 
 build: configure
