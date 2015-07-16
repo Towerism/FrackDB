@@ -26,12 +26,12 @@ std::string Attribute_list::concatenate_key_for(const std::vector<std::string>& 
   return concatenate_key(key);
 }
 
-std::string Attribute_list::concatenate_key(const std::vector<std::string>& key) const {
-  return std::accumulate(key.begin(), key.end(), std::string());
-}
-
 std::vector<std::string> Attribute_list::calculate_key(const std::vector<std::string>& row) const {
   int primary_key_starting_index = primary_key_starting_iterator - names.begin();
   auto key_starting_iterator = row.begin() + primary_key_starting_index;
   return std::vector<std::string>(key_starting_iterator, key_starting_iterator + primary_key.size());
+}
+
+std::string Attribute_list::concatenate_key(const std::vector<std::string>& key) const {
+  return std::accumulate(key.begin(), key.end(), std::string());
 }
