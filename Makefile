@@ -2,7 +2,7 @@
 .PHONY: all check_bii configure build test clean
 default: all
 
-all: test
+all: configure build test
 
 bii:
 	bii init -L
@@ -10,11 +10,11 @@ bii:
 configure: bii
 	bii cpp:configure
 
-build: configure
+build: bii
 	bii build
 
-test: build
+test: bii
 	bii test
 
-clean: check_bii
+clean: bii
 	bii clean
