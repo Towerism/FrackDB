@@ -2,7 +2,7 @@
 .PHONY: all check_bii configure build test clean
 default: all
 
-all: configure build test
+all: test
 
 bii:
 	bii init -L
