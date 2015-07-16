@@ -1,5 +1,5 @@
 # FrackDB [![Biicode Block](https://webapi.biicode.com/v1/badges/Towerism/Towerism/FrackDB/master)](https://www.biicode.com/Towerism/FrackDB) [![Build Status](https://travis-ci.org/Towerism/FrackDB.svg?branch=develop)](https://travis-ci.org/Towerism/FrackDB)
-Another database management system
+Another database management system (SQL-like DSL)
 
 # Requirements
 * Biicode 3.3+
