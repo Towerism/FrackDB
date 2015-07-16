@@ -16,7 +16,7 @@ script: make
 
 after_success:
   - bii user "$BII_USER" -p "$BII_PASSWORD"
-  - bii publish
+  - bii publish --remote
 
 env:
   global:
