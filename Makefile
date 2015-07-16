@@ -5,7 +5,7 @@ default: all
 all: test
 
 bii:
-	bii init -L && touch .bii_init
+	bii init -L
 
 configure: bii
 	bii cpp:configure
