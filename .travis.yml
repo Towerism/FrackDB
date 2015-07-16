@@ -12,7 +12,7 @@ install:
   - sudo ci/install_biicode.sh
   - bii setup:cpp
 
-script: make
+script: make find configure test
 
 after_success:
   - bii user "$BII_USER" -p "$BII_PASSWORD"

@@ -7,6 +7,9 @@ all: test
 bii:
 	bii init -L
 
+find: bii
+	bii find
+
 configure: bii
 	bii cpp:configure
 
