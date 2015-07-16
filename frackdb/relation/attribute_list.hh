@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <util/exception/define_exception.hh>
 
 class Attribute_list {
 public:
@@ -12,11 +13,10 @@ public:
   std::string concatenate_key_for(const std::vector<std::string>& row) const;
   std::string concatenate_key(const std::vector<std::string>& key) const;
 
-  struct Primary_key_exception : public std::exception {
-    virtual const char* what() const noexcept {
-      return "Primary_key_exception";
-    }
-  };
+  void check_row_size(const std::vector<std::string>& row) const;
+
+  DEFINE_EXCEPTION(Primary_key_exception, Attribute_list);
+  DEFINE_EXCEPTION(Row_size_exception, Attribute_list);
 
 private:
 

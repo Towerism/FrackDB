@@ -16,6 +16,11 @@ void Attribute_list::check_primary_key(std::vector<std::string>& primary_key) {
     throw Primary_key_exception();
 }
 
+void Attribute_list::check_row_size(const std::vector<std::string>& row) const {
+  if (row.size() != names.size())
+    throw Row_size_exception();
+}
+
 std::string Attribute_list::concatenate_key_for(const std::vector<std::string>& row) const {
   std::vector<std::string> key = calculate_key(row);
   return concatenate_key(key);

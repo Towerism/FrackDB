@@ -10,6 +10,7 @@ Relation::Relation(std::string name, std::vector<std::string> attribute_names, s
 }
 
 void Relation::add(std::vector<std::string> row) {
+  attribute_list.check_row_size(row);
   std::string concatenated_key = attribute_list.concatenate_key_for(row);
   rows[concatenated_key] = row;
 }
