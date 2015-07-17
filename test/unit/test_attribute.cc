@@ -2,14 +2,9 @@
 #include <relation/var_char_attribute.hh>
 #include <relation/integer_attribute.hh>
 
-using std::string;
-using std::vector;
-
 class AttributeTest : public ::testing::Test {
 public:
-
   ~AttributeTest() { delete attribute; }
-
   Attribute* attribute = nullptr;
 };
 
