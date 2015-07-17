@@ -3,6 +3,7 @@ Another database management system (SQL-like DSL)
 
 # Requirements
 * Biicode 3.3+
+* Boost libraries
 * C++14 Compiler
 * CMake 3.1.3+
 * GNU Make 4.1+
