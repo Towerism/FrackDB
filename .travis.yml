@@ -4,15 +4,17 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      - boost-latest
     packages:
       - g++-5
+      - libboost-all-dev
 
 install:
   - export CXX=g++-5
   - sudo ci/install_biicode.sh
   - bii setup:cpp
 
-script: make find configure test
+script: make
 
 after_success:
   - bii user "$BII_USER" -p "$BII_PASSWORD"
