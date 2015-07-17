@@ -2,9 +2,11 @@
 #include "attribute_list.hh"
 #include "row_checker.hh"
 
-Attribute_list::Attribute_list(std::vector<Attribute*> attributes) {
+Attribute_list::Attribute_list(std::vector<Attribute*> attributes, std::vector<std::string> primary_key) : name_to_key_mapper(names, primary_key) {
   init_attribute_ptrs(attributes);
   init_names();
+  safe_set_primary_key(primary_key);
+  name_to_key_mapper.init();
 }
 
 void Attribute_list::init_attribute_ptrs(std::vector<Attribute*> attributes) {
@@ -17,15 +19,19 @@ void Attribute_list::init_names() {
     names.push_back(attribute->get_name());
 }
 
-void Attribute_list::safe_set_primary_key(std::vector<std::string> pkey) {
-  check_primary_key(pkey);
-  primary_key = pkey;
+void Attribute_list::safe_set_primary_key(std::vector<std::string> primary_key) {
+  this->primary_key = primary_key;
+  check_primary_key();
 }
 
-void Attribute_list::check_primary_key(std::vector<std::string>& pkey) {
-  primary_key_starting_iterator = std::search(names.begin(), names.end(), pkey.begin(), pkey.end());
-  if (primary_key_starting_iterator == names.end())
-    throw Primary_key_exception();
+// TODO: refactor
+void Attribute_list::check_primary_key() {
+  auto primary_key_iterator = primary_key.begin();
+  for (auto names_iterator = names.begin(); primary_key_iterator != primary_key.end(); ++names_iterator, ++primary_key_iterator) {
+    auto found = std::find(names_iterator, names.end(), *primary_key_iterator);
+    if (found == names.end() || names_iterator == names.end())
+      throw Primary_key_exception();
+  }
 }
 
 void Attribute_list::check_row(const std::vector<std::string>& row) const {
@@ -33,15 +39,16 @@ void Attribute_list::check_row(const std::vector<std::string>& row) const {
   row_checker.check();
 }
 
-std::string Attribute_list::concatenate_key_for(std::vector<std::string>& row) const {
+std::string Attribute_list::concatenate_key_for(const std::vector<std::string>& row) const {
   std::vector<std::string> key = calculate_key(row);
   return concatenate_key(key);
 }
 
 std::vector<std::string> Attribute_list::calculate_key(const std::vector<std::string>& row) const {
-  int primary_key_starting_index = primary_key_starting_iterator - names.begin();
-  auto key_starting_iterator = row.begin() + primary_key_starting_index;
-  return std::vector<std::string>(key_starting_iterator, key_starting_iterator + primary_key.size());
+  std::vector<std::string> key;
+  for (int i = 0; i < primary_key.size(); ++i)
+    key.push_back(row[name_to_key_mapper.get(i)]);
+  return key;
 }
 
 std::string Attribute_list::concatenate_key(const std::vector<std::string>& key) const {

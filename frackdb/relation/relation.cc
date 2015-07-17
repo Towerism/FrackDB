@@ -1,8 +1,7 @@
 #include "relation.hh"
 
-Relation::Relation(std::string name, Attribute_list attribute_list, std::vector<std::string> primary_key)
+Relation::Relation(std::string name, Attribute_list attribute_list)
   : name(name), attribute_list(attribute_list) {
-  this->attribute_list.safe_set_primary_key(primary_key);
 }
 
 void Relation::add(std::vector<std::string> row) {
