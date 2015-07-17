@@ -5,31 +5,35 @@
 using std::string;
 using std::vector;
 
-TEST(AttributeTest, CreateVarChar) {
-  Attribute* name = new Var_char_attribute("name", 15);
+class AttributeTest : public ::testing::Test {
+public:
 
-  EXPECT_TRUE(name->is_type_compatible_with("Harry"));
-  delete name;
+  ~AttributeTest() { delete attribute; }
+
+  Attribute* attribute = nullptr;
+};
+
+TEST_F(AttributeTest, CreateVarChar) {
+  attribute = new Var_char_attribute("name", 15);
+
+  EXPECT_TRUE(attribute->is_type_compatible_with("Harry"));
 }
 
-TEST(AttributeTest, CreateInteger) {
-  Attribute* age = new Integer_attribute("age");
+TEST_F(AttributeTest, CreateInteger) {
+  attribute = new Integer_attribute("funds");
 
-  EXPECT_TRUE(age->is_type_compatible_with("15"));
-  EXPECT_TRUE(age->is_type_compatible_with("-27"));
-  delete age;
+  EXPECT_TRUE(attribute->is_type_compatible_with("15"));
+  EXPECT_TRUE(attribute->is_type_compatible_with("-27"));
 }
 
-TEST(AttributeTest, VarCharTooLongShouldBeTypeMismatch) {
-  Attribute* name = new Var_char_attribute("name", 15);
+TEST_F(AttributeTest, VarCharTooLongShouldBeTypeMismatch) {
+  attribute = new Var_char_attribute("name", 15);
 
-  EXPECT_FALSE(name->is_type_compatible_with("My name is too long!"));
-  delete name;
+  EXPECT_FALSE(attribute->is_type_compatible_with("My name is too long!"));
 }
 
-TEST(AttributeTest, StringForIntegerShouldBeTypeMismatch) {
-  Attribute* age = new Integer_attribute("age");
+TEST_F(AttributeTest, StringForIntegerShouldBeTypeMismatch) {
+  attribute = new Integer_attribute("age");
 
-  EXPECT_FALSE(age->is_type_compatible_with("Hello!"));
-  delete age;
+  EXPECT_FALSE(attribute->is_type_compatible_with("Hello!"));
 }
