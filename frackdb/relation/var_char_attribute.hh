@@ -5,7 +5,7 @@
 class Var_char_attribute : public Attribute {
 public:
 
-  Var_char_attribute(std::string value, int char_limit);
+  Var_char_attribute(std::string name, int char_limit);
 
   virtual bool is_type_compatible_with(const std::string& str) const override;
 

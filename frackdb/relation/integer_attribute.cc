@@ -1,7 +1,8 @@
 #include <boost/lexical_cast.hpp>
 #include "integer_attribute.hh"
 
-Integer_attribute::Integer_attribute(std::string value) {
+Integer_attribute::Integer_attribute(std::string name) {
+  this->name = name;
 }
 
 bool Integer_attribute::is_type_compatible_with(const std::string& str) const {

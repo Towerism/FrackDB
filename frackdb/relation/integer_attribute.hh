@@ -5,7 +5,7 @@
 class Integer_attribute : public Attribute {
 public:
 
-  Integer_attribute(std::string value);
+  Integer_attribute(std::string name);
 
   virtual bool is_type_compatible_with(const std::string& str) const override;
 

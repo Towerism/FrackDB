@@ -1,6 +1,5 @@
 #pragma once
 
-#include <exception>
 #include <map>
 #include <string>
 #include <vector>
@@ -9,8 +8,7 @@
 class Relation {
 public:
 
-  Relation(std::string name, std::vector<std::string> attribute_names);
-  Relation(std::string name, std::vector<std::string> attribute_names, std::vector<std::string> primary_key);
+  Relation(std::string name, Attribute_list attribute_list, std::vector<std::string> primary_key);
 
   void add(std::vector<std::string> row);
   const std::vector<std::string>& get(const std::vector<std::string>& key) const;
