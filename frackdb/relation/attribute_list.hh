@@ -25,7 +25,6 @@ private:
   std::vector<std::string> primary_key;
   Index_mapper name_to_key_mapper;
 
-  void init_attribute_ptrs(std::vector<Attribute*> attributes);
   void init_names();
   void safe_set_primary_key(std::vector<std::string> primary_key);
   void check_primary_key();

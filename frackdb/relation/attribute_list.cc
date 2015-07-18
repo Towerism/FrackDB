@@ -4,16 +4,10 @@
 #include "row_checker.hh"
 
 Attribute_list::Attribute_list(std::vector<Attribute*> attributes, std::vector<std::string> primary_key)
-  : primary_key(primary_key), name_to_key_mapper(names, primary_key) {
-  init_attribute_ptrs(attributes);
+  : attributes(attributes.begin(), attributes.end()), primary_key(primary_key), name_to_key_mapper(names, primary_key) {
   init_names();
   check_primary_key();
   name_to_key_mapper.init();
-}
-
-void Attribute_list::init_attribute_ptrs(std::vector<Attribute*> attributes) {
-  for (auto attribute : attributes)
-    this->attributes.emplace_back(attribute);
 }
 
 void Attribute_list::init_names() {
