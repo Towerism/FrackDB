@@ -12,7 +12,7 @@ public:
   RelationTest() : attribute_list({ new Var_char_attribute("name", 15),
                                     new Integer_attribute("age"),
                                     new Var_char_attribute("state", 15) },
-    { "name", "age" }) { }
+                                  { "name", "age" }) { }
   Attribute_list attribute_list;
 };
 
