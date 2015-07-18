@@ -30,3 +30,4 @@
 /bin/*
 /bii/*
 /.bii_init
+/Gemfile.lock

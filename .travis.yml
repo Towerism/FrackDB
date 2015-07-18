@@ -10,14 +10,10 @@ addons:
       - libboost-all-dev
 
 install:
-  - export CXX=g++-5
-  - wget http://launchpadlibrarian.net/188120513/lcov_1.11-3_all.deb
-  - sudo dpkg -i lcov_1.11-3_all.deb
-  - rm lcov_1.11-3_all.deb
-  - sudo rm -f /usr/bin/gcov
-  - sudo ln /usr/bin/gcov-5 /usr/bin/gcov
+  - bundle install
+  - sudo ci/install_lcov.sh
+  - sudo ci/fix_symlinks.sh
   - sudo ci/install_biicode.sh
-  - gem install coveralls-lcov
   - bii setup:cpp
 
 script: make coverage
