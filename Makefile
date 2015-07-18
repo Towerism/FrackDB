@@ -19,5 +19,9 @@ build: bii
 test: bii
 	bii test
 
+coverage: bii
+	bii cpp:configure -DFRACKDB_COVERAGE=ON
+	make -s -C bii/build coverage
+
 clean: bii
 	bii clean

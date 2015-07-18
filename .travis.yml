@@ -11,14 +11,21 @@ addons:
 
 install:
   - export CXX=g++-5
+  - wget http://launchpadlibrarian.net/188120513/lcov_1.11-3_all.deb
+  - sudo dpkg -i lcov_1.11-3_all.deb
+  - rm lcov_1.11-3_all.deb
+  - sudo rm -f /usr/bin/gcov
+  - sudo ln /usr/bin/gcov-5 /usr/bin/gcov
   - sudo ci/install_biicode.sh
+  - gem install coveralls-lcov
   - bii setup:cpp
 
-script: make
+script: make coverage
 
 after_success:
   - bii user "$BII_USER" -p "$BII_PASSWORD"
   - bii publish --remote
+  - coveralls-lcov bii/build/coverage/coverage.info.cleaned
 
 env:
   global:
