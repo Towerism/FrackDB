@@ -1,12 +1,13 @@
 #include <gtest/gtest.h>
 #include <relation/attribute_list.hh>
 #include <relation/integer_attribute.hh>
+#include <relation/primary_key_checker.hh>
 #include <relation/var_char_attribute.hh>
 
 TEST(AttributeListTest, BadPrimaryKeyThrowsException) {
   Attribute_list* attribute_list;
   EXPECT_THROW(attribute_list = new Attribute_list({ new Var_char_attribute("name", 15)}, { "bad", "primary", "key" }),
-               Attribute_list::Primary_key_exception);
+               Primary_key_checker::Primary_key_exception);
 }
 
 TEST(AttributeListTest, CreateUsingContiguousPrimaryKey) {

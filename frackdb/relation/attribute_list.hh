@@ -18,8 +18,6 @@ public:
 
   void check_row(const std::vector<std::string>& row) const;
 
-  DEFINE_EXCEPTION(Primary_key_exception, Attribute_list);
-
 private:
 
   std::vector<std::shared_ptr<Attribute>> attributes;
