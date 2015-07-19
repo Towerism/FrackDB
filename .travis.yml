@@ -14,13 +14,13 @@ addons:
     packages:
       - g++-5
       - libboost-all-dev
-  coverity-scan:
+  coverity_scan:
     project:
       name: "Towerism/FrackDB"
       description: "Another database management system"
     notification_email: martin.frackerjr@gmail.com
     build_command: make
-    branch_pattern: coverity_scan
+    branch_pattern: coverity-scan
 
 install:
   - bundle install
