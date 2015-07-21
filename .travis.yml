@@ -20,7 +20,7 @@ addons:
       description: "Another database management system"
     notification_email: martin.frackerjr@gmail.com
     build_command: "make"
-    branch_pattern: coverity_scan
+    branch_pattern: coverity-scan
 
 install:
   - bundle install
@@ -33,5 +33,5 @@ script: if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then make coverage; fi
 
 after_success:
   - if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then bii user "$BII_USER" -p "$BII_PASSWORD"; fi
-  - if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then bii publish -- remote; fi  
+  - if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then bii publish --remote; fi  
   - if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then coveralls-lcov bii/build/coverage/coverage.info.cleaned; fi
