@@ -5,8 +5,8 @@
 #include <relation/var_char_attribute.hh>
 
 TEST(AttributeListTest, BadPrimaryKeyThrowsException) {
-  Attribute_list* attribute_list;
-  EXPECT_THROW(attribute_list = new Attribute_list({ new Var_char_attribute("name", 15)}, { "bad", "primary", "key" }),
+  std::unique_ptr<Attribute_list> attribute_list;
+  EXPECT_THROW(attribute_list = std::make_unique<Attribute_list>(Attribute_list({ new Var_char_attribute("name", 15)}, { "bad", "primary", "key" })),
                Primary_key_checker::Primary_key_exception);
 }
 
