@@ -21,12 +21,9 @@ public:
 private:
 
   std::vector<std::shared_ptr<Attribute>> attributes;
-  std::vector<std::string> names;
   std::vector<std::string> primary_key;
   Index_mapper name_to_key_mapper;
 
-  void init_names();
-  void safe_set_primary_key(std::vector<std::string> primary_key);
   void check_primary_key();
   std::vector<std::string> calculate_key(const std::vector<std::string>& row) const;
 };
