@@ -8,7 +8,6 @@ public:
 
   Index_mapper(std::vector<std::string> from_vector, std::vector<std::string> to_vector);
 
-  void init();
   int get(int i) const;
 
 private:

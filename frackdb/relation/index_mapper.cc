@@ -5,10 +5,6 @@ Index_mapper::Index_mapper(std::vector<std::string> from_vector, std::vector<std
   init_mapping();
 }
 
-void Index_mapper::init() {
-  init_mapping();
-}
-
 int Index_mapper::get(int i) const {
   return mapping[i];
 }
