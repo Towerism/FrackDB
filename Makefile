@@ -10,13 +10,13 @@ bii:
 find: bii
 	bii find
 
-configure-release: clean bii
+configure-release: bii
 	bii cpp:configure -DCMAKE_BUILD_TYPE=RELEASE
 
-configure-debug: clean bii
+configure-debug: bii
 	bii cpp:configure -DCMAKE_BUILD_TYPE=DEBUG
 
-configure-coverage: clean bii
+configure-coverage: bii
 	bii cpp:configure -DCMAKE_BUILD_TYPE=DEBUG -DFRACKDB_COVERAGE=ON
 
 build: bii configure-release
