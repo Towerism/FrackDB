@@ -11,7 +11,7 @@ ADD_CXX_FLAGS("-std=c++14")
 
 IF (${FRACKDB_COVERAGE} AND NOT WINDOWS AND NOT APPLE)
   ADD_CXX_FLAGS("-O0 -fprofile-arcs -ftest-coverage")
-  LIST(APPEND CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage -lgcov")
+  SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage -lgcov")
   INCLUDE(Towerism/Coverage/code_coverage)
   SETUP_TARGET_FOR_COVERAGE(
     coverage
