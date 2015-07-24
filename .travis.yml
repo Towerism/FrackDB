@@ -10,10 +10,8 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - boost-latest
     packages:
       - g++-5
-      - libboost-all-dev
   coverity_scan:
     project:
       name: "Towerism/FrackDB"

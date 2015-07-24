@@ -1,5 +1,8 @@
 OPTION(FRACKDB_COVERAGE "Enable test coverage analysis of FrackDB" OFF)
 
+INCLUDE(biicode/boost/setup)
+BII_FIND_BOOST()
+
 ADD_BII_TARGETS()
 
 INCLUDE(Towerism/CMake/add_cxx_flags)
