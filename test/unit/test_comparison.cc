@@ -1,34 +1,34 @@
 #include <gtest/gtest.h>
-#include <evaluation/comparison.hh>
+#include <evaluation/comparison_evaluator.hh>
 
 TEST(ComparisonTest, LessThan) {
-  Comparison true_comparison(15, new Less_than, 17);
-  Comparison false_comparison(17, new Less_than, 15);
+  Comparison<Operator::Less_than> true_comparison(15, 17);
+  Comparison<Operator::Less_than> false_comparison(17, 15);
 
-  EXPECT_EQ(true, true_comparison.evaluate());
-  EXPECT_EQ(false, false_comparison.evaluate());
+  EXPECT_EQ(true, Comparison_evaluator::evaluate(true_comparison));
+  EXPECT_EQ(false, Comparison_evaluator::evaluate(false_comparison));
 }
 
 TEST(ComparisonTest, GreaterThan) {
-  Comparison true_comparison(17, new Greater_than, 15);
-  Comparison false_comparison(15, new Greater_than, 17);
+  Comparison<Operator::Greater_than> true_comparison(17, 15);
+  Comparison<Operator::Greater_than> false_comparison(15, 17);
 
-  EXPECT_EQ(true, true_comparison.evaluate());
-  EXPECT_EQ(false, false_comparison.evaluate());
+  EXPECT_EQ(true, Comparison_evaluator::evaluate(true_comparison));
+  EXPECT_EQ(false, Comparison_evaluator::evaluate(false_comparison));
 }
 
 TEST(ComparisonTest, Equal) {
-  Comparison true_comparison(15, new Equal, 15);
-  Comparison false_comparison(15, new Equal, 17);
+  Comparison<Operator::Equal> true_comparison(15, 15);
+  Comparison<Operator::Equal> false_comparison(17, 15);
 
-  EXPECT_EQ(true, true_comparison.evaluate());
-  EXPECT_EQ(false, false_comparison.evaluate());
+  EXPECT_EQ(true, Comparison_evaluator::evaluate(true_comparison));
+  EXPECT_EQ(false, Comparison_evaluator::evaluate(false_comparison));
 }
 
 TEST(ComparisonTest, StringCompare) {
-  Comparison true_comparison("bison", new Less_than, "car");
-  Comparison false_comparison("car", new Less_than, "bison");
+  Comparison<Operator::Less_than> true_comparison("bison", "car");
+  Comparison<Operator::Less_than> false_comparison("car", "bison");
 
-  EXPECT_EQ(true, true_comparison.evaluate());
-  EXPECT_EQ(false, false_comparison.evaluate());
+  EXPECT_EQ(true, Comparison_evaluator::evaluate(true_comparison));
+  EXPECT_EQ(false, Comparison_evaluator::evaluate(false_comparison));
 }

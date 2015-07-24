@@ -1,18 +1,21 @@
+#pragma once
+
 #include <boost/variant.hpp>
+#include <boost/mpl/vector.hpp>
 #include <memory>
 #include <string>
 #include "operator.hh"
 
+template <Operator op>
 class Comparison {
 public:
 
-  Comparison(operand left, Operator* op, operand right);
+  Comparison(operand left, operand right);
 
-  bool evaluate() const;
-
-private:
-
-  boost::variant<int, std::string> left;
-  std::unique_ptr<Operator> op;
-  boost::variant<int, std::string> right;
+  operand left;
+  operand right;
 };
+
+template <Operator op>
+Comparison<op>::Comparison(operand left, operand right) : left(left), right(right) {
+}
