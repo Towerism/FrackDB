@@ -9,7 +9,9 @@ public:
   typedef boost::variant<
     Comparison<Operator::Less_than>,
     Comparison<Operator::Greater_than>,
-    Comparison<Operator::Equal>
+    Comparison<Operator::Equal> ,
+    Comparison<Operator::Less_equal>,
+    Comparison<Operator::Greater_equal>
   > comparison_variant;
 
   static bool evaluate(const comparison_variant& comparison);

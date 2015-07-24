@@ -6,5 +6,5 @@
 typedef boost::variant<int, std::string> operand;
 
 enum class Operator {
-  Less_than, Greater_than, Equal
+  Less_than, Greater_than, Equal, Less_equal, Greater_equal
 };

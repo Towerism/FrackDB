@@ -12,3 +12,11 @@ bool Evaluate_comparison::operator()(const Comparison<Operator::Greater_than>& c
 bool Evaluate_comparison::operator()(const Comparison<Operator::Equal>& comparison) const {
   return comparison.left == comparison.right;
 }
+
+bool Evaluate_comparison::operator()(const Comparison<Operator::Less_equal>& comparison) const {
+  return comparison.left <= comparison.right;
+}
+
+bool Evaluate_comparison::operator()(const Comparison<Operator::Greater_equal>& comparison) const {
+  return comparison.left >= comparison.right;
+}

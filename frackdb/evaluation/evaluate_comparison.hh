@@ -13,4 +13,8 @@ public:
   bool operator()(const Comparison<Operator::Greater_than>& comparison) const;
 
   bool operator()(const Comparison<Operator::Equal>& comparison) const;
+
+  bool operator()(const Comparison<Operator::Less_equal>& comparison) const;
+
+  bool operator()(const Comparison<Operator::Greater_equal>& comparison) const;
 };
