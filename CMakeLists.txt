@@ -1,6 +1,7 @@
 OPTION(FRACKDB_COVERAGE "Enable test coverage analysis of FrackDB" OFF)
 
 INCLUDE(biicode/boost/setup)
+SET(BII_BOOST_GLOBAL_OVERRIDE_VERSION 1.58.0)
 BII_FIND_BOOST()
 
 ADD_BII_TARGETS()
