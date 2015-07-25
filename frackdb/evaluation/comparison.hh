@@ -17,8 +17,7 @@ public:
 
 protected:
 
-  operand left;
-  operand right;
+  operand left, right;
 };
 
 class Less_than : public Comparison {
@@ -42,13 +41,6 @@ public:
   virtual bool evaluate() const override;
 };
 
-class Greater : public Comparison {
-public:
-  using Comparison::Comparison;
-
-  virtual bool evaluate() const override;
-};
-
 class Less_equal : public Comparison {
 public:
   using Comparison::Comparison;
@@ -59,6 +51,5 @@ public:
 class Greater_equal : public Comparison {
 public:
   using Comparison::Comparison;
-
-  virtual bool evaluate() const override;
+virtual bool evaluate() const override;
 };
