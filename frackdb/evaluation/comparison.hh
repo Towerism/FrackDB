@@ -1,18 +1,62 @@
 #include <boost/variant.hpp>
 #include <memory>
 #include <string>
-#include "operator.hh"
+
+typedef boost::variant<int, std::string> operand;
 
 class Comparison {
 public:
 
-  Comparison(operand left, Operator* op, operand right);
+  Comparison(operand left, operand right);
 
-  bool evaluate() const;
+  virtual bool evaluate() const = 0;
 
-private:
+  virtual ~Comparison() = default;
 
-  boost::variant<int, std::string> left;
-  std::unique_ptr<Operator> op;
-  boost::variant<int, std::string> right;
+protected:
+
+  operand left;
+  operand right;
+};
+
+class Less_than : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
+};
+
+class Greater_than : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
+};
+
+class Equal : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
+};
+
+class Greater : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
+};
+
+class Less_equal : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
+};
+
+class Greater_equal : public Comparison {
+public:
+  using Comparison::Comparison;
+
+  virtual bool evaluate() const override;
 };

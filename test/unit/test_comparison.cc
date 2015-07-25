@@ -2,33 +2,33 @@
 #include <evaluation/comparison.hh>
 
 TEST(ComparisonTest, LessThan) {
-  Comparison true_comparison(15, new Less_than, 17);
-  Comparison false_comparison(17, new Less_than, 15);
+  Less_than true_comparison(15, 17);
+  Less_than false_comparison(17, 15);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(false, false_comparison.evaluate());
 }
 
 TEST(ComparisonTest, GreaterThan) {
-  Comparison true_comparison(17, new Greater_than, 15);
-  Comparison false_comparison(15, new Greater_than, 17);
+  Greater_than true_comparison(17, 15);
+  Greater_than false_comparison(15, 17);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(false, false_comparison.evaluate());
 }
 
 TEST(ComparisonTest, Equal) {
-  Comparison true_comparison(15, new Equal, 15);
-  Comparison false_comparison(15, new Equal, 17);
+  Equal true_comparison(15, 15);
+  Equal false_comparison(15, 17);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(false, false_comparison.evaluate());
 }
 
 TEST(ComparisonTest, LessEqual) {
-  Comparison true_comparison(15, new Less_equal, 17);
-  Comparison fringe_comparison(15, new Less_equal, 15);
-  Comparison false_comparison(17, new Less_equal, 15);
+  Less_equal true_comparison(15, 17);
+  Less_equal fringe_comparison(15, 15);
+  Less_equal false_comparison(17, 15);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(true, fringe_comparison.evaluate());
@@ -36,9 +36,9 @@ TEST(ComparisonTest, LessEqual) {
 }
 
 TEST(ComparisonTest, GreaterEqual) {
-  Comparison true_comparison(17, new Greater_equal, 15);
-  Comparison fringe_comparison(15, new Greater_equal, 15);
-  Comparison false_comparison(15, new Greater_equal, 17);
+  Greater_equal true_comparison(17, 15);
+  Greater_equal fringe_comparison(15, 15);
+  Greater_equal false_comparison(15, 17);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(true, fringe_comparison.evaluate());
@@ -46,8 +46,16 @@ TEST(ComparisonTest, GreaterEqual) {
 }
 
 TEST(ComparisonTest, StringCompare) {
-  Comparison true_comparison("bison", new Less_than, "car");
-  Comparison false_comparison("car", new Less_than, "bison");
+  Less_than true_comparison("bison", "car");
+  Less_than false_comparison("car", "bison");
+
+  EXPECT_EQ(true, true_comparison.evaluate());
+  EXPECT_EQ(false, false_comparison.evaluate());
+}
+
+TEST(ComparisonTest, BoolCompare) {
+  Equal true_comparison(true, true);
+  Equal false_comparison(true, false);
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(false, false_comparison.evaluate());
