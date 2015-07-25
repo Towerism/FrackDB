@@ -1,6 +1,6 @@
 #include "comparison.hh"
 
-Comparison::Comparison(operand left, operand right)
+Comparison::Comparison(comparison_operand left, comparison_operand right)
   : left(left), right(right) {
 }
 

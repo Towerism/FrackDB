@@ -1,15 +1,14 @@
 #pragma once
 
 #include <boost/variant.hpp>
-#include <memory>
 #include <string>
 
-typedef boost::variant<int, std::string> operand;
+typedef boost::variant<int, std::string> comparison_operand;
 
 class Comparison {
 public:
 
-  Comparison(operand left, operand right);
+  Comparison(comparison_operand left, comparison_operand right);
 
   virtual bool evaluate() const = 0;
 
@@ -17,7 +16,7 @@ public:
 
 protected:
 
-  operand left, right;
+  comparison_operand left, right;
 };
 
 class Less_than : public Comparison {
@@ -51,5 +50,6 @@ public:
 class Greater_equal : public Comparison {
 public:
   using Comparison::Comparison;
-virtual bool evaluate() const override;
+
+  virtual bool evaluate() const override;
 };
