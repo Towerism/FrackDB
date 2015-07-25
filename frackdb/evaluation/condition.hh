@@ -24,21 +24,24 @@ protected:
 
 class And : public Condition {
 public:
-  using Condition::Condition;
+
+  And(condition_operand left, condition_operand right) : Condition(left, right) { }
 
   virtual bool evaluate() const override;
 };
 
 class Or : public Condition {
 public:
-  using Condition::Condition;
+
+  Or(condition_operand left, condition_operand right) : Condition(left, right) { }
 
   virtual bool evaluate() const override;
 };
 
 class Not : public Condition {
 public:
-  using Condition::Condition;
+
+  Not(condition_operand left) : Condition(left) { }
 
   virtual bool evaluate() const override;
 };
