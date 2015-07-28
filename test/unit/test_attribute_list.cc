@@ -41,3 +41,15 @@ TEST(AttributeListTest, ConcatenateKeyForRowUsingNonContiguousPrimaryKey) {
 
   EXPECT_EQ("xz", attribute_list.concatenate_key_for({ "x", "y", "z" }));
 }
+
+TEST(AttributeListTest, GetIndexMap) {
+  Attribute_list attribute_list({ new Integer_attribute("a"),
+                                  new Integer_attribute("b"),
+                                  new Integer_attribute("c") },
+                                { "a", "c" });
+  std::map<std::string, int> index_map = attribute_list.get_index_map();
+
+  EXPECT_EQ(0, index_map["a"]);
+  EXPECT_EQ(1, index_map["b"]);
+  EXPECT_EQ(2, index_map["c"]);
+}

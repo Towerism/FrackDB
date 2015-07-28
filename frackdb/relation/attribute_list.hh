@@ -4,7 +4,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <util/exception/define_exception.hh>
 #include "attribute.hh"
 #include "index_mapper.hh"
 
@@ -17,6 +16,10 @@ public:
   std::string concatenate_key(const std::vector<std::string>& key) const;
 
   void check_row(const std::vector<std::string>& row) const;
+
+  std::vector<attribute_variant> make_variant_list_from_row(const std::vector<std::string>& row) const;
+
+  std::map<std::string, int> get_index_map() const;
 
 private:
 

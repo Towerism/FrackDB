@@ -7,3 +7,7 @@ Var_char_attribute::Var_char_attribute(std::string name, int char_limit) : char_
 bool Var_char_attribute::is_type_compatible_with(const std::string& str) const {
   return str.size() <= char_limit;
 }
+
+attribute_variant Var_char_attribute::make_value(std::string str) const {
+  return attribute_variant(str);
+}

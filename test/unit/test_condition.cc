@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include <evaluation/condition.hh>
+#include <relation/relation.hh>
+#include <relation/var_char_attribute.hh>
 
 TEST(ConditionTest, And) {
   And true_condition(true, true);
@@ -39,4 +41,17 @@ TEST(ConditionTest, RecursiveWithComparison) {
 
   EXPECT_EQ(true, true_condition.evaluate());
   EXPECT_EQ(false, false_condition.evaluate());
+}
+
+TEST(ConditionTest, IdentifierSupport) {
+  Attribute_list attribute_list({ new Var_char_attribute("name", 15) }, { "name" });
+  Relation relation("people", attribute_list);
+  relation.add({ "martin" });
+  const Row& row = relation.get( { "martin" });
+
+  And true_condition(std::make_shared<Equal>(Identifier("name"), "martin"), std::make_shared<Not>(false));
+  And false_condition(std::make_shared<Equal>(Identifier("name"), "nitram"), std::make_shared<Not>(false));
+
+  EXPECT_EQ(true, true_condition.evaluate(row)); // needs parameter to substitute name identifier
+  EXPECT_EQ(false, false_condition.evaluate(row)); // "
 }

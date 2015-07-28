@@ -9,6 +9,8 @@ public:
 
   virtual bool is_type_compatible_with(const std::string& str) const override;
 
+  virtual attribute_variant make_value(std::string str) const override;
+
 private:
 
   int char_limit;

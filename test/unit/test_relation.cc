@@ -18,10 +18,13 @@ public:
 
 TEST_F(RelationTest, AddRow) {
   Relation relation("people", attribute_list);
-  vector<string> row = { "martin", "15", "texas" };
-  relation.add(row);
+  vector<string> raw_row = { "martin", "15", "texas" };
+  relation.add(raw_row);
+  const Row& row = relation.get({ "martin", "15" });
 
-  EXPECT_EQ(row, relation.get({ "martin", "15" }));
+  EXPECT_EQ("martin", row.get_var_char("name"));
+  EXPECT_EQ(15, row.get_int("age"));
+  EXPECT_EQ("texas", row.get_var_char("state"));
 }
 
 TEST_F(RelationTest, AddLongRowThrowsException) {

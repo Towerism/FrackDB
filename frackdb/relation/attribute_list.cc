@@ -35,3 +35,18 @@ std::vector<std::string> Attribute_list::calculate_key(const std::vector<std::st
 std::string Attribute_list::concatenate_key(const std::vector<std::string>& key) const {
   return std::accumulate(key.begin(), key.end(), std::string());
 }
+
+std::vector<attribute_variant> Attribute_list::make_variant_list_from_row(const std::vector<std::string>& row) const {
+  std::vector<attribute_variant> variant_list;
+  for (int i = 0; i < attributes.size(); ++i)
+    variant_list.push_back(attributes[i]->make_value(row[i]));
+  return variant_list;
+}
+
+std::map<std::string, int> Attribute_list::get_index_map() const {
+  auto names = Names_extractor::extract(this->attributes);
+  std::map<std::string, int> index_map;
+  for (int i = 0; i < names.size(); ++i)
+    index_map[names[i]] = i;
+  return index_map;
+}

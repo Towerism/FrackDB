@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include <evaluation/comparison.hh>
+#include <relation/relation.hh>
+#include <relation/var_char_attribute.hh>
 
 TEST(ComparisonTest, LessThan) {
   Less_than true_comparison(15, 17);
@@ -59,4 +61,17 @@ TEST(ComparisonTest, BoolCompare) {
 
   EXPECT_EQ(true, true_comparison.evaluate());
   EXPECT_EQ(false, false_comparison.evaluate());
+}
+
+TEST(ComparisonTest, IdentifierSupport) {
+  Attribute_list attribute_list({ new Var_char_attribute("name", 15) }, { "name" });
+  Relation relation("people", attribute_list);
+  relation.add({ "martin" });
+  const Row& row = relation.get( { "martin" });
+
+  Equal true_comparison(Identifier("name"), "martin");
+  Equal false_comparison(Identifier("name"), "nitram");
+
+  EXPECT_EQ(true, true_comparison.evaluate(row)); // needs parameter to substitute name identifier
+  EXPECT_EQ(false, false_comparison.evaluate(row)); // "
 }

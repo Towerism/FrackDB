@@ -2,6 +2,7 @@
 
 #include <boost/variant.hpp>
 #include <memory>
+#include <relation/row.hh>
 #include "comparison.hh"
 
 class Condition;
@@ -14,6 +15,7 @@ public:
   Condition(condition_operand left) : left(left) { }
 
   virtual bool evaluate() const = 0;
+  virtual bool evaluate(const Row& row) const = 0;
 
   virtual ~Condition() = default;
 
@@ -28,6 +30,7 @@ public:
   And(condition_operand left, condition_operand right) : Condition(left, right) { }
 
   virtual bool evaluate() const override;
+  virtual bool evaluate(const Row& row) const override;
 };
 
 class Or : public Condition {
@@ -36,6 +39,7 @@ public:
   Or(condition_operand left, condition_operand right) : Condition(left, right) { }
 
   virtual bool evaluate() const override;
+  virtual bool evaluate(const Row& row) const override;
 };
 
 class Not : public Condition {
@@ -44,4 +48,5 @@ public:
   Not(condition_operand left) : Condition(left) { }
 
   virtual bool evaluate() const override;
+  virtual bool evaluate(const Row& row) const override;
 };

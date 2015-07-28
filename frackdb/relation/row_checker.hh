@@ -1,5 +1,6 @@
 #pragma once
 
+#include <util/exception/define_exception.hh>
 #include "attribute_list.hh"
 
 class Row_checker {
