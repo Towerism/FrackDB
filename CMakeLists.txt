@@ -3,7 +3,6 @@ OPTION(FRACKDB_COVERAGE "Enable test coverage analysis of FrackDB" OFF)
 FIND_PACKAGE(Boost 1.58.0)
 IF (NOT ${Boost_FOUND})
   INCLUDE(biicode/boost/setup)
-  SET(BII_BOOST_GLOBAL_OVERRIDE_VERSION 1.58.0)
   BII_FIND_BOOST()
 ENDIF()
 
