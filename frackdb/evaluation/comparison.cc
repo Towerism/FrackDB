@@ -7,16 +7,15 @@ public:
   Substitute(const Row& row) : row(row), boost::static_visitor<basic_comparison_operand>::static_visitor() { }
 
   basic_comparison_operand operator()(int value) const {
-    return basic_comparison_operand(value);
+    return value;
   }
 
   basic_comparison_operand operator()(const std::string& value) const {
-    return basic_comparison_operand(value);
+    return value;
   }
 
-  basic_comparison_operand operator()(const Identifier& value) const {
-    basic_comparison_operand substituted = value.evaluate(row);
-    return substituted;
+  basic_comparison_operand operator()(const Identifier& identifier) const {
+    return identifier.substitute_value_from(row);
   }
 
 private:

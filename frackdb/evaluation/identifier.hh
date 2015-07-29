@@ -7,11 +7,9 @@
 class Identifier {
 public:
 
-  Identifier(std::string name = "") : name(name) { }
+  Identifier(std::string name = "");
 
-  attribute_variant evaluate(const Row& row) const {
-    return attribute_variant(row.get_variant(name));
-  }
+  attribute_variant substitute_value_from(const Row& row) const;
 
 private:
 
