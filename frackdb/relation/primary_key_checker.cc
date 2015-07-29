@@ -1,18 +1,18 @@
 #include <algorithm>
+#include "names_extractor.hh"
 #include "primary_key_checker.hh"
 
-Primary_key_checker::Primary_key_checker(const std::vector<std::string>& names, const std::vector<std::string>& primary_key)
-  : names(names), primary_key(primary_key), names_iterator(names.begin()), primary_key_iterator(primary_key.begin()) {
+Primary_key_checker::Primary_key_checker(const std::vector<std::shared_ptr<Attribute>>& attributes, const std::vector<std::string>& primary_key)
+  : names(Names_extractor::extract(attributes)), primary_key(primary_key), names_iterator(names.begin()), primary_key_iterator(primary_key.begin()) {
 }
 
-// TODO: refactor
 void Primary_key_checker::check() {
   while (primary_key_iterator != primary_key.end())
     check_next_key_word_exists_in_names();
 }
 
 void Primary_key_checker::check_next_key_word_exists_in_names() {
-  auto found = std::find(names_iterator, names.end(), *primary_key_iterator);
+  auto found = std::find(names_iterator, names.cend(), *primary_key_iterator);
   check_key_word_exists_in_names(found);
   advance_iterators();
 }

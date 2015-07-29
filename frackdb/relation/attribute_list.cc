@@ -1,22 +1,17 @@
 #include <algorithm>
 #include "attribute_list.hh"
+#include "names_extractor.hh"
 #include "primary_key_checker.hh"
 #include "row_checker.hh"
 
 Attribute_list::Attribute_list(std::vector<Attribute*> attributes, std::vector<std::string> primary_key)
-  : attributes(attributes.begin(), attributes.end()), primary_key(primary_key), name_to_key_mapper(names, primary_key) {
-  init_names();
+  : attributes(attributes.begin(), attributes.end()), primary_key(primary_key),
+    name_to_key_mapper(Names_extractor::extract(this->attributes), primary_key) {
   check_primary_key();
-  name_to_key_mapper.init();
-}
-
-void Attribute_list::init_names() {
-  for (auto attribute : attributes)
-    names.push_back(attribute->get_name());
 }
 
 void Attribute_list::check_primary_key() {
-  Primary_key_checker primary_key_checker(names, primary_key);
+  Primary_key_checker primary_key_checker(attributes, primary_key);
   primary_key_checker.check();
 }
 
@@ -39,4 +34,19 @@ std::vector<std::string> Attribute_list::calculate_key(const std::vector<std::st
 
 std::string Attribute_list::concatenate_key(const std::vector<std::string>& key) const {
   return std::accumulate(key.begin(), key.end(), std::string());
+}
+
+std::vector<attribute_variant> Attribute_list::make_variant_list_from_row(const std::vector<std::string>& row) const {
+  std::vector<attribute_variant> variant_list;
+  for (int i = 0; i < attributes.size(); ++i)
+    variant_list.push_back(attributes[i]->make_value(row[i]));
+  return variant_list;
+}
+
+std::map<std::string, int> Attribute_list::get_index_map() const {
+  auto names = Names_extractor::extract(this->attributes);
+  std::map<std::string, int> index_map;
+  for (int i = 0; i < names.size(); ++i)
+    index_map[names[i]] = i;
+  return index_map;
 }

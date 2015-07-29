@@ -1,10 +1,7 @@
 #include "index_mapper.hh"
 
-Index_mapper::Index_mapper(const std::vector<std::string>& from_vector, const std::vector<std::string>& to_vector)
+Index_mapper::Index_mapper(std::vector<std::string> from_vector, std::vector<std::string> to_vector)
   : from_vector(from_vector), to_vector(to_vector) {
-}
-
-void Index_mapper::init() {
   init_mapping();
 }
 

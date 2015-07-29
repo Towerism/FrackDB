@@ -6,7 +6,7 @@
 class Primary_key_checker {
 public:
 
-  Primary_key_checker(const std::vector<std::string>& names, const std::vector<std::string>& primary_key);
+  Primary_key_checker(const std::vector<std::shared_ptr<Attribute>>& attributes, const std::vector<std::string>& primary_key);
 
   void check() ;
 
@@ -14,7 +14,7 @@ public:
 
 private:
 
-  const std::vector<std::string>& names;
+  std::vector<std::string> names;
   const std::vector<std::string>& primary_key;
 
   std::vector<std::string>::const_iterator names_iterator;

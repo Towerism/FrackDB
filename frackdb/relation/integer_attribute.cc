@@ -14,3 +14,8 @@ bool Integer_attribute::is_integer(const std::string& str) const {
   catch (const boost::bad_lexical_cast&) { return false; }
   return true;
 }
+
+attribute_variant Integer_attribute::make_value(std::string str) const {
+  int converted = boost::lexical_cast<int>(str);
+  return attribute_variant(converted);
+}

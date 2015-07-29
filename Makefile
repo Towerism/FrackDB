@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: all check_bii configure build test clean
+.PHONY: all check_bii configure-release configure-debug configure-coverage build test clean
 default: all
 
 all: test
@@ -10,17 +10,22 @@ bii:
 find: bii
 	bii find
 
-configure: bii
-	bii cpp:configure
+configure-release: bii
+	bii cpp:configure -DCMAKE_BUILD_TYPE=RELEASE
 
-build: bii
+configure-debug: bii
+	bii cpp:configure -DCMAKE_BUILD_TYPE=DEBUG
+
+configure-coverage: bii
+	bii cpp:configure -DCMAKE_BUILD_TYPE=DEBUG -DFRACKDB_COVERAGE=ON
+
+build: bii configure-release
 	bii build
 
-test: bii
+test: bii configure-debug
 	bii test
 
-coverage: bii
-	bii cpp:configure -DFRACKDB_COVERAGE=ON
+coverage: bii configure-coverage
 	bii build --target coverage -- -s
 
 clean: bii
