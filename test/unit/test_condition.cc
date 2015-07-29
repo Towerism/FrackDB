@@ -43,7 +43,7 @@ TEST(ConditionTest, RecursiveWithComparison) {
   EXPECT_EQ(false, false_condition.evaluate());
 }
 
-TEST(ConditionTest, IdentifierSupport) {
+TEST(ConditionTest, IdentifierSubstitution) {
   Attribute_list attribute_list({ new Var_char_attribute("name", 15) }, { "name" });
   Relation relation("people", attribute_list);
   relation.add({ "martin" });

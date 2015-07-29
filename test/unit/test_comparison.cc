@@ -63,7 +63,7 @@ TEST(ComparisonTest, BoolCompare) {
   EXPECT_EQ(false, false_comparison.evaluate());
 }
 
-TEST(ComparisonTest, IdentifierSupport) {
+TEST(ComparisonTest, IdentifierSubstitution) {
   Attribute_list attribute_list({ new Var_char_attribute("name", 15) }, { "name" });
   Relation relation("people", attribute_list);
   relation.add({ "martin" });
