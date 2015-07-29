@@ -4,18 +4,19 @@
 #include <memory>
 #include <relation/row.hh>
 #include "comparison.hh"
+#include "evaluator.hh"
 
 class Condition;
 typedef boost::variant<std::shared_ptr<Comparison>, std::shared_ptr<Condition>, bool> condition_operand;
 
-class Condition {
+class Condition : public Evaluator {
 public:
 
   Condition(condition_operand left, condition_operand right) : left(left), right(right) { }
   Condition(condition_operand left) : left(left) { }
 
-  bool evaluate() const;
-  virtual bool evaluate(const Row& row) const = 0;
+  virtual bool evaluate() const override;
+  virtual bool evaluate(const Row& row) const override = 0;
 
   virtual ~Condition() = default;
 

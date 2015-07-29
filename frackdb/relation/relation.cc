@@ -14,3 +14,13 @@ const Row& Relation::get(const std::vector<std::string>& key) const {
   std::string concatenated_key = attribute_list.concatenate_key(key);
   return rows.at(concatenated_key);
 }
+
+void Relation::remove_if_not(std::shared_ptr<Evaluator> evaluator) {
+  for (auto key_row_pair : rows)
+    if (!evaluator->evaluate(key_row_pair.second))
+      rows.erase(key_row_pair.first);
+}
+
+int Relation::size() const {
+  return rows.size();
+}
