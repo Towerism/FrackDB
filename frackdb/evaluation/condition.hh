@@ -14,7 +14,7 @@ public:
   Condition(condition_operand left, condition_operand right) : left(left), right(right) { }
   Condition(condition_operand left) : left(left) { }
 
-  virtual bool evaluate() const = 0;
+  bool evaluate() const;
   virtual bool evaluate(const Row& row) const = 0;
 
   virtual ~Condition() = default;
@@ -29,7 +29,6 @@ public:
 
   And(condition_operand left, condition_operand right) : Condition(left, right) { }
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -38,7 +37,6 @@ public:
 
   Or(condition_operand left, condition_operand right) : Condition(left, right) { }
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -47,6 +45,5 @@ public:
 
   Not(condition_operand left) : Condition(left) { }
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };

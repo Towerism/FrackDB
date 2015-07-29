@@ -14,7 +14,7 @@ public:
 
   Comparison(comparison_operand left, comparison_operand right);
 
-  virtual bool evaluate() const = 0;
+  bool evaluate() const;
   virtual bool evaluate(const Row& row) const = 0;
 
   virtual ~Comparison() = default;
@@ -28,7 +28,6 @@ class Less_than : public Comparison {
 public:
   using Comparison::Comparison;
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -36,7 +35,6 @@ class Greater_than : public Comparison {
 public:
   using Comparison::Comparison;
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -44,7 +42,6 @@ class Equal : public Comparison {
 public:
   using Comparison::Comparison;
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -52,7 +49,6 @@ class Less_equal : public Comparison {
 public:
   using Comparison::Comparison;
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };
 
@@ -60,6 +56,5 @@ class Greater_equal : public Comparison {
 public:
   using Comparison::Comparison;
 
-  virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override;
 };

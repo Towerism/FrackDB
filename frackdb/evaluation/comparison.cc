@@ -27,7 +27,7 @@ Comparison::Comparison(comparison_operand left, comparison_operand right)
   : left(left), right(right) {
 }
 
-bool Less_than::evaluate() const {
+bool Comparison::evaluate() const {
   return evaluate(Row());
 }
 
@@ -35,32 +35,16 @@ bool Less_than::evaluate(const Row& row) const {
   return boost::apply_visitor(Substitute(row), left) < boost::apply_visitor(Substitute(row), right);
 }
 
-bool Greater_than::evaluate() const {
-  return evaluate(Row());
-}
-
 bool Greater_than::evaluate(const Row& row) const {
   return boost::apply_visitor(Substitute(row), left) > boost::apply_visitor(Substitute(row), right);
-}
-
-bool Equal::evaluate() const {
-  return evaluate(Row());
 }
 
 bool Equal::evaluate(const Row& row) const {
   return boost::apply_visitor(Substitute(row), left) == boost::apply_visitor(Substitute(row), right);
 }
 
-bool Less_equal::evaluate() const {
-  return evaluate(Row());
-}
-
 bool Less_equal::evaluate(const Row& row) const {
   return boost::apply_visitor(Substitute(row), left) <= boost::apply_visitor(Substitute(row), right);
-}
-
-bool Greater_equal::evaluate() const {
-  return evaluate(Row());
 }
 
 bool Greater_equal::evaluate(const Row& row) const {

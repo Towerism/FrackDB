@@ -14,7 +14,7 @@ private:
   const Row& row;
 };
 
-bool And::evaluate() const {
+bool Condition::evaluate() const {
   return evaluate(Row());
 }
 
@@ -22,16 +22,8 @@ bool And::evaluate(const Row& row) const {
   return boost::apply_visitor(Evaluate_condition_operand(row), left) && boost::apply_visitor(Evaluate_condition_operand(row), right);
 }
 
-bool Or::evaluate() const {
-  return evaluate(Row());
-}
-
 bool Or::evaluate(const Row& row) const {
   return boost::apply_visitor(Evaluate_condition_operand(row), left) || boost::apply_visitor(Evaluate_condition_operand(row), right);
-}
-
-bool Not::evaluate() const {
-  return evaluate(Row());
 }
 
 bool Not::evaluate(const Row& row) const {
