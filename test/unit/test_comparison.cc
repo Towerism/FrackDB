@@ -73,6 +73,6 @@ TEST(ComparisonTest, IdentifierSubstitution) {
   std::unique_ptr<Comparison> true_comparison(new Equal(Identifier("name"), "martin"));
   std::unique_ptr<Comparison> false_comparison(new Equal(Identifier("name"), "nitram"));
 
-  EXPECT_EQ(true, true_comparison->evaluate(row)); // needs parameter to substitute name identifier
-  EXPECT_EQ(false, false_comparison->evaluate(row)); // "
+  EXPECT_EQ(true, true_comparison->evaluate(row));
+  EXPECT_EQ(false, false_comparison->evaluate(row));
 }

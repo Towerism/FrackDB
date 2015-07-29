@@ -2,8 +2,6 @@
 #include <relation/row.hh>
 #include "mpl_type_defs.hh"
 
-// NEED ROWS TO CARRY TYPE INFO!!
-
 class Identifier {
 public:
 

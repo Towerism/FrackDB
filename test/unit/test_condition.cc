@@ -53,6 +53,6 @@ TEST(ConditionTest, IdentifierSubstitution) {
   std::unique_ptr<Condition> true_condition(new And(std::make_shared<Equal>(Identifier("name"), "martin"), std::make_shared<Not>(false)));
   std::unique_ptr<Condition> false_condition(new And(std::make_shared<Equal>(Identifier("name"), "nitram"), std::make_shared<Not>(false)));
 
-  EXPECT_EQ(true, true_condition->evaluate(row)); // needs parameter to substitute name identifier
-  EXPECT_EQ(false, false_condition->evaluate(row)); // "
+  EXPECT_EQ(true, true_condition->evaluate(row));
+  EXPECT_EQ(false, false_condition->evaluate(row));
 }
