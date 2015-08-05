@@ -12,8 +12,8 @@ typedef boost::variant<std::shared_ptr<Comparison>, std::shared_ptr<Condition>, 
 class Condition : public Evaluator {
 public:
 
-  Condition(condition_operand left, condition_operand right) : left(left), right(right) { }
-  Condition(condition_operand left) : left(left) { }
+  Condition(condition_operand left, condition_operand right);
+  Condition(condition_operand left);
 
   virtual bool evaluate() const override;
   virtual bool evaluate(const Row& row) const override = 0;
