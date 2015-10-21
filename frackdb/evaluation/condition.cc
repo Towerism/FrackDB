@@ -11,14 +11,22 @@ bool Condition::evaluate() const {
   return evaluate(Row());
 }
 
+bool Condition::evaluate_left(const Row& row) const {
+  return boost::apply_visitor(Evaluate_condition_operand(row), left);
+}
+
+bool Condition::evaluate_right(const Row& row) const {
+  return boost::apply_visitor(Evaluate_condition_operand(row), right);
+}
+
 bool And::evaluate(const Row& row) const {
-  return boost::apply_visitor(Evaluate_condition_operand(row), left) && boost::apply_visitor(Evaluate_condition_operand(row), right);
+  return evaluate_left(row) && evaluate_right(row);
 }
 
 bool Or::evaluate(const Row& row) const {
-  return boost::apply_visitor(Evaluate_condition_operand(row), left) || boost::apply_visitor(Evaluate_condition_operand(row), right);
+  return evaluate_left(row) || evaluate_right(row);
 }
 
 bool Not::evaluate(const Row& row) const {
-  return !boost::apply_visitor(Evaluate_condition_operand(row), left);
+  return !evaluate_left(row);
 }

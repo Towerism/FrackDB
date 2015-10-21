@@ -23,6 +23,9 @@ public:
 protected:
 
   condition_operand left, right;
+
+  bool evaluate_left(const Row& row) const;
+  bool evaluate_right(const Row& row) const;
 };
 
 class And : public Condition {
