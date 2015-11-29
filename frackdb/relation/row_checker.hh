@@ -12,6 +12,7 @@ public:
 
   DEFINE_EXCEPTION(Row_size_exception, Attribute_list);
   DEFINE_EXCEPTION(Type_match_exception, Attribute_list);
+  DEFINE_EXCEPTION(No_attribute_exception, Attribute_list);
 
 private:
 
