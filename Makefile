@@ -25,6 +25,12 @@ build: bii configure-release
 test: bii configure-debug
 	bii test
 
+build/fast:
+	bii build
+
+test/fast:
+	bii test
+
 coverage: bii configure-coverage
 	bii build --target coverage -- -s
 
