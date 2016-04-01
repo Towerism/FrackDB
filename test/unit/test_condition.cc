@@ -29,16 +29,16 @@ TEST(ConditionTest, Not) {
 }
 
 TEST(ConditionTest, RecursiveWithoutComparison) {
-  std::unique_ptr<Condition> true_condition(new And(std::make_shared<And>(true, std::make_shared<Or>(false, std::make_shared<Not>(false))), std::make_shared<Or>(true, false)));
-  std::unique_ptr<Condition> false_condition(new Or(std::make_shared<And>(false, std::make_shared<Not>(true)), std::make_shared<And>(false, false)));
+  std::unique_ptr<Condition> true_condition(new And(new And(true, new Or(false, new Not(false))), new Or(true, false)));
+  std::unique_ptr<Condition> false_condition(new Or(new And(false, new Not(true)), new And(false, false)));
 
   EXPECT_EQ(true, true_condition->evaluate());
   EXPECT_EQ(false, false_condition->evaluate());
 }
 
 TEST(ConditionTest, RecursiveWithComparison) {
-  std::unique_ptr<Condition> true_condition(new And(std::make_shared<Greater_than>(17, 15), std::make_shared<Less_than>(15, 17)));
-  std::unique_ptr<Condition> false_condition(new Not(std::make_shared<Equal>(15, 15)));
+  std::unique_ptr<Condition> true_condition(new And(new Greater_than(17, 15), new Less_than(15, 17)));
+  std::unique_ptr<Condition> false_condition(new Not(new Equal(15, 15)));
 
   EXPECT_EQ(true, true_condition->evaluate());
   EXPECT_EQ(false, false_condition->evaluate());
@@ -50,8 +50,8 @@ TEST(ConditionTest, IdentifierSubstitution) {
   relation.add({ "martin" });
   const Row& row = relation.get( { "martin" });
 
-  std::unique_ptr<Condition> true_condition(new And(std::make_shared<Equal>(Identifier("name"), "martin"), std::make_shared<Not>(false)));
-  std::unique_ptr<Condition> false_condition(new And(std::make_shared<Equal>(Identifier("name"), "nitram"), std::make_shared<Not>(false)));
+  std::unique_ptr<Condition> true_condition(new And(new Equal(Identifier("name"), "martin"), new Not(false)));
+  std::unique_ptr<Condition> false_condition(new And(new Equal(Identifier("name"), "nitram"), new Not(false)));
 
   EXPECT_EQ(true, true_condition->evaluate(row));
   EXPECT_EQ(false, false_condition->evaluate(row));
