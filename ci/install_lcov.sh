@@ -1,5 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
-wget http://launchpadlibrarian.net/188120513/lcov_1.11-3_all.deb
-dpkg -i lcov_1.11-3_all.deb
-rm lcov_1.11-3_all.deb
+git clone https://github.com/linux-test-project/lcov.git
+cd lcov && make install PREFIX=..
