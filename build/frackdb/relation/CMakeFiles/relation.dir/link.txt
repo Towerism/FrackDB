@@ -1,2 +1,0 @@
-/usr/bin/ar qc librelation.a  CMakeFiles/relation.dir/attribute_list.cc.o CMakeFiles/relation.dir/index_mapper.cc.o CMakeFiles/relation.dir/integer_attribute.cc.o CMakeFiles/relation.dir/names_extractor.cc.o CMakeFiles/relation.dir/primary_key_checker.cc.o CMakeFiles/relation.dir/relation.cc.o CMakeFiles/relation.dir/row.cc.o CMakeFiles/relation.dir/row_checker.cc.o CMakeFiles/relation.dir/var_char_attribute.cc.o
-/usr/bin/ranlib librelation.a

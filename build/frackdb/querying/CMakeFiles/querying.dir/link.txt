@@ -1,2 +1,0 @@
-/usr/bin/ar qc libquerying.a  CMakeFiles/querying.dir/select.cc.o
-/usr/bin/ranlib libquerying.a

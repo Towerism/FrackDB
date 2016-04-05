@@ -31,4 +31,4 @@
 /bii/*
 /.bii_init
 /Gemfile.lock
-/build
+/build/*

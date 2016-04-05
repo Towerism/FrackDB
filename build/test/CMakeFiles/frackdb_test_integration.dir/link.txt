@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++14  -Wall -Wextra -Wpedantic     -o frackdb_test_integration -rdynamic ../frackdb/evaluation/libevaluation.a ../frackdb/relation/librelation.a ../frackdb/querying/libquerying.a ../googletest-build/googlemock/gtest/libgtest.a ../googletest-build/googlemock/gtest/libgtest_main.a ../googletest-build/googlemock/gtest/libgtest.a -lpthread 
