@@ -1,24 +1,33 @@
-INCLUDE(biicode/boost/setup)
-INCLUDE(Towerism/CMake/add_cxx_flags)
-INCLUDE(Towerism/CMake/code_coverage)
+cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
-OPTION(FRACKDB_COVERAGE "Enable test coverage analysis of FrackDB" OFF)
+project(frackdb)
 
-FIND_PACKAGE(Boost 1.58.0)
-IF (NOT ${Boost_FOUND})
-  BII_FIND_BOOST()
-ENDIF()
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
-ADD_BII_TARGETS()
+option(FRACKDB_COVERAGE "Enable test coverage analysis" OFF)
+option(FRACKDB_TEST "Enable testing" OFF)
+option(FRACKDB_TEST_UNIT "Enable unit testing (only if testing is enabled)" ON)
+option(FRACKDB_TEST_INTEGRATION "Enable integration testing (only if testing is enabled)" ON)
+option(FRACKDB_COVERAGE "Enable test coverage analysis (debug, linux builds only)" OFF)
 
-ADD_CXX_FLAGS("-std=c++14")
+set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
-IF (${FRACKDB_COVERAGE} AND NOT WINDOWS AND NOT APPLE)
-  ADD_CXX_FLAGS("--coverage")
-  SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
-  SETUP_TARGET_FOR_COVERAGE(
-    coverage
-    ${BII_test_unit_TARGET}
-    coverage
-  )
-ENDIF()
+include_directories(.)
+include_directories(frackdb)
+add_subdirectory(frackdb)
+
+IF (${FRACKDB_TEST} AND NOT WINDOWS AND NOT APPLE)
+  enable_testing()
+  add_subdirectory(test EXCLUDE_FROM_ALL)
+  add_custom_target(build-tests)
+  if (${FRACKDB_TEST_UNIT})
+    add_test(NAME unit COMMAND $<TARGET_FILE:frackdb_test_unit>)
+    add_dependencies(build-tests frackdb_test_unit)
+  endif()
+
+  if (${FRACKDB_TEST_INTEGRATION})
+    add_test(NAME integration COMMAND $<TARGET_FILE:frackdb_test_integration>)
+    add_dependencies(build-tests frackdb_test_integration)
+  endif()
+
+endif()

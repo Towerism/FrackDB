@@ -1,0 +1,2 @@
+/usr/bin/ar qc libevaluation.a  CMakeFiles/evaluation.dir/comparison.cc.o CMakeFiles/evaluation.dir/condition.cc.o CMakeFiles/evaluation.dir/identifier.cc.o
+/usr/bin/ranlib libevaluation.a
